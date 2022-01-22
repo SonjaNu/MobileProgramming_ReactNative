@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput, Image} from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
 
 export default function CalculatorApp() {
 
@@ -34,6 +33,9 @@ export default function CalculatorApp() {
     },
   });
   
+  const [count, setCount] = useState('');
+  const [count2, setCount2] = useState('');
+  const [result, setResult] = useState('');
 
   const subtraction= () =>{
     setResult(Number(count) - Number(count2));
@@ -47,9 +49,7 @@ export default function CalculatorApp() {
     setCount2('')
   }
 
-  const [count, setCount] = useState('');
-  const [count2, setCount2] = useState('');
-  const [result, setResult] = useState('');
+
   
   return (
     
