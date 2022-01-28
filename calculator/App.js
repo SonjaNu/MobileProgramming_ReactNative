@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput} from 'react-native';
+import React, {useState, useRef} from 'react';
+import { StyleSheet, Text, View, Button, TextInput, FlatList} from 'react-native';
 
 export default function CalculatorApp() {
 
@@ -13,22 +13,25 @@ export default function CalculatorApp() {
     },
 
     text: {
-      marginBottom: 20,
+      paddingBottom: 20,
+      paddingTop: 200,
 
     },
 
     input: {
+      width: '20%',
       width:80, 
       borderColor:'purple', 
       borderWidth:2,
       color: 'purple',
-      justifyContent: 'space-around', //how to get space between two textfields...?
+      justifyContent: 'space-evenly', 
       
     }, 
     operators: {
+    width: '20%',
     marginTop: 20,
     flexDirection:'row', 
-    justifyContent: 'space-around',  //How to get space between two buttons...?
+    justifyContent: 'space-evenly',  
 
     },
   });
@@ -36,15 +39,22 @@ export default function CalculatorApp() {
   const [count, setCount] = useState('');
   const [count2, setCount2] = useState('');
   const [result, setResult] = useState('');
+  const [data, setData] = useState([]);
 
   const subtraction= () =>{
-    setResult(Number(count) - Number(count2));
+    let result = Number(count) - Number(count2); 
+    setResult(result);
+    const historyItem = `${count} - ${count2} = ${result}`;
+    setData([...data, {key: historyItem}]);
     setCount('')
     setCount2('')
   }
 
   const addition= () =>{
-    setResult(Number(count) + Number(count2));
+    let result = Number(count) + Number(count2); 
+    setResult(result);
+    const historyItem = `${count} + ${count2} = ${result}`;
+    setData([...data, {key: historyItem}]);
     setCount('')
     setCount2('')
   }
@@ -68,6 +78,12 @@ export default function CalculatorApp() {
         <Button onPress={subtraction} title="-" color="purple"/> 
 
       </View>
+
+      <FlatList
+        data={data}
+        renderItem={({item}) => 
+            <Text>{item.key}</Text>}
+      />
 
     </View>
   );

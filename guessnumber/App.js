@@ -24,7 +24,8 @@ export default function GuessNumberApp() {
       width: 150
     },
   });
-
+// const on tilamuuttuja, let tavallinen
+// vain välttämättömät tilamuuttujiksi
   const [correctNumber, setCorrectNumber] = React.useState(Math.floor(Math.random() * 100) + 1);
   const [guessedNumber, setGuessedNumber] = React.useState('');
   const [guess, setGuess] = React.useState(1);
